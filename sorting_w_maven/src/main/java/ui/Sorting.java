@@ -109,4 +109,54 @@ public class Sorting<T extends Comparable<T>> {
         arr[j] = iValue;
     }
 
+    private static void merge(Integer[] data, int temp[],int low, int middle, int high){
+        int ri = low; 
+        int ti = low; 
+        int di = middle; 
+        
+        
+        while (i <= middle && j <= high) {
+            if (temp[i] <= temp[j]) {
+                data[k] = temp[i];
+                i++;
+            } else {
+                data[k] = temp[j];
+                j++;
+            }
+            k++;
+        }
+        
+
+        while (ti < middle){
+            data[ri++] = temp[ti++];
+        }
+        
+        }
+
+    private static void mergeSortRecursive(Integer[] data, int temp[], int low, int high){
+        int n = high-low+1;
+        int middle = low + n/2;
+        int i;
+        if (n < 2) return;
+        
+        for (i = low; i < middle; i++)
+        {
+        temp[i] = data[i];
+        }
+        
+        mergeSortRecursive(data,temp,low,middle-1);
+        
+        mergeSortRecursive(data,temp,middle,high);
+        
+        merge(data,temp,low,middle,high);
+    }
+
+    /**
+     * @param arr
+     */
+    public void MergeSort(Integer[] arra, int[] i)
+    {
+    mergeSortRecursive(arra,i,0,arra.length-1);
+    }
+
 }
