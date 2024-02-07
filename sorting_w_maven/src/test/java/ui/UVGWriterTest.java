@@ -1,33 +1,24 @@
 package ui;
 
+import static org.junit.Assert.*;
+
+import java.io.File;
 import java.io.IOException;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args ) throws IOException
-    {
-        String[][] test = GenerateExpectedArray(10);
+import org.junit.Test;
 
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j < 10; j++){
-                System.out.println(test[i][j]);
-            }
-        }
-
-        UVGFileReader reader =  new UVGFileReader();
-
-        String[][] testArray = reader.CSVToArray("/lectorTest.csv");
-        String[][] expectedArray = GenerateExpectedArray(10);}
-
-        
+public class UVGWriterTest {
+    
+    @Test
+    public void ArrayToCSVTest() throws IOException{
+        String[][] expectedArray = GenerateExpectedArray(10);
 
         UVGFileWriter writer = new UVGFileWriter();
 
         writer.ArrayToCSV(expectedArray,"kiwi.csv", true);
+
+        
+
     }
 
     private static String[][] GenerateExpectedArray(int rows){
@@ -52,7 +43,4 @@ public class App
 
         return array;
     }
-
-    
-
 }
