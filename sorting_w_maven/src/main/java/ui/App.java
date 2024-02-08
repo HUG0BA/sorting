@@ -1,58 +1,51 @@
 package ui;
 
 import java.io.IOException;
+import java.util.*;
 
 /**
  * Hello world!
  *
  */
-public class App 
-{
+public class App {
     public static void main( String[] args ) throws IOException
     {
-        String[][] test = GenerateExpectedArray(10);
-
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j < 10; j++){
-                System.out.println(test[i][j]);
-            }
-        }
-
-        UVGFileReader reader =  new UVGFileReader();
-
-        String[][] testArray = reader.CSVToArray("/lectorTest.csv");
-        String[][] expectedArray = GenerateExpectedArray(10);}
-
+        Scanner teclado = new Scanner(System.in);
+        Sorting<Integer> sorter = new Sorting<Integer>();
+        System.out.println("Sorting, Seleccione una opcion");
+        System.out.println("1. Gnome Sorting");
+        System.out.println("2. Quick Sorting");
+        System.out.println("3. Radix Sorting");
+        System.out.println("4. Merge Sorting");
+        System.out.println("5. Selection Sorting");
+        int option = teclado.nextInt();
+        switch (option) {
+            case 1:
+                System.out.println("1. Gnome Sorting");
+                sorter.GnomeSort();
+                break;
+            case 2:
+                System.out.println("2. Quick Sorting");
+                sorter.QuickSort();
+                
+                break;
+            case 3:
+                System.out.println("3. Radix Sorting");
+                sorter.RadixSort(null, 3000);
+                
+                break;
+            case 4:
+                System.out.println("4. Merge Sorting");
+                sorter.MergeSort();
+                
+                break;
+            case 5:
+                System.out.println("5. Selection Sorting"); 
+                sorter.selectionSort(, .length);
+                break;
         
-
-        UVGFileWriter writer = new UVGFileWriter();
-
-        writer.ArrayToCSV(expectedArray,"kiwi.csv", true);
+            default:
+                break;
+        }
     }
-
-    private static String[][] GenerateExpectedArray(int rows){
-        String[][] array = new String[4][rows];
-
-        for(int j = 0; j < rows; j++){
-            array[0][j] = "A" + j;
-        }
-
-        for(int j = 0; j < rows; j++){
-            array[1][j] = "B" + j;
-        }
-
-        for(int j = 0; j < rows; j++){
-            array[2][j] = "C" + j;
-        }
-
-        for(int j = 0; j < rows; j++){
-            array[3][j] = "D" + j;
-        }
-
-
-        return array;
-    }
-
-    
-
 }
