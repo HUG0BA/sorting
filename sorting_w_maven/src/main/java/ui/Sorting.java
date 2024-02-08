@@ -1,9 +1,13 @@
 package ui;
+import java.lang.Math;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Sorting<T extends Comparable<T>> {
 
+
+//-----------------------------------------------Gnome Sort------------------------------------------------//
     public void GnomeSort(T[] arr) {
         int i = 0;
         while (i < arr.length) {
@@ -20,6 +24,10 @@ public class Sorting<T extends Comparable<T>> {
         }
     }
 
+//-----------------------------------------------Gnome Sort------------------------------------------------//
+
+
+//-----------------------------------------------Quick Sort------------------------------------------------//
     public void QuickSort(T[] arr) {
         QuickSortRecursive(arr, 0, arr.length - 1);
     }
@@ -50,6 +58,9 @@ public class Sorting<T extends Comparable<T>> {
         QuickSortRecursive(arr, pivot + 1, rightIndex);
     }
 
+//-----------------------------------------------Quick Sort------------------------------------------------//
+
+//-----------------------------------------------Radix Sort------------------------------------------------//
     public void RadixSort(Integer[] arr, int maxNumberOfDigits) {
         for (int i = 0; i < maxNumberOfDigits; i++) {
             BucketPass(arr, i);
@@ -58,7 +69,7 @@ public class Sorting<T extends Comparable<T>> {
 
     private int Digit(int n, int d) {
         if (d == 0)
-            return n % 10;
+            return Math.abs(n) % 10;
         else
             return Digit(n / 10, d - 1);
     }
@@ -103,13 +114,29 @@ public class Sorting<T extends Comparable<T>> {
 
     }
 
-    public void Swap(T[] arr, int i, int j) {
-        T iValue = arr[i];
-        arr[i] = arr[j];
-        arr[j] = iValue;
+    public int FindMaxNumberOfDigits(Integer[] arr){
+        int max = arr[0];
+
+        for(int i = 1; i < arr.length; i++){
+            if((arr[i].compareTo(max)) > 0){
+                max = arr[i];
+            } 
+        }
+
+        int maxDigit = 0;
+        int j = max;
+        while(j != 0){
+            j = j/10;
+            maxDigit++;
+        }
+
+        return maxDigit;
     }
 
-    private static void merge(Integer[] data, Integer[] temp, int low, int middle, int high) {
+//-----------------------------------------------Rafix Sort------------------------------------------------//
+
+//-----------------------------------------------Merge Sort------------------------------------------------//
+    private void merge(Integer[] data, Integer[] temp, int low, int middle, int high) {
         for (int i = low; i <= high; i++) {
             temp[i] = data[i];
         }
@@ -135,7 +162,7 @@ public class Sorting<T extends Comparable<T>> {
         }
     }
 
-    private static void mergeSortRecursive(Integer[] data, Integer[] temp, int low, int high) {
+    private void mergeSortRecursive(Integer[] data, Integer[] temp, int low, int high) {
         if (low < high) {
             int middle = low + (high - low) / 2;
             mergeSortRecursive(data, temp, low, middle);
@@ -144,23 +171,44 @@ public class Sorting<T extends Comparable<T>> {
         }
     }
 
-    public static void MergeSort(Integer[] arr) {
+    public void MergeSort(Integer[] arr) {
         Integer[] tempArray = new Integer[arr.length];
         mergeSortRecursive(arr, tempArray, 0, arr.length - 1);
     }
-    public void selectionSort(T[] data, int n){
+
+//-----------------------------------------------Merge Sort------------------------------------------------//
+
+
+//-----------------------------------------------Selection Sort------------------------------------------------//
+    /**
+     * @param data
+     * @param n
+     */
+    public void selectionSort(T[] data, int n)
+        {
         int numUnsorted = n;
         int index;
         int max; 
-        while (numUnsorted > 0) {
+        while (numUnsorted > 0){
             max = 0;
-            for (index = 1; index < numUnsorted; index++) {
-                if (data[max].compareTo(data[index]) < 0) {
-                    max = index;
-                }
+            for (index = 1; index < numUnsorted; index++){
+                if (data[max].compareTo(data[index]) < 0) 
+                max = index;
             }
-            Swap(data, max, numUnsorted - 1);
+            Swap(data, max, numUnsorted-1);
             numUnsorted--;
         }
     }
+//-----------------------------------------------Selection Sort------------------------------------------------//
+
+//----------------------------------------------------Extra----------------------------------------------------//
+    public void Swap(T[] arr, int i, int j) {
+        T iValue = arr[i];
+        arr[i] = arr[j];
+        arr[j] = iValue;
+    }
+//----------------------------------------------------Extra----------------------------------------------------//
+
 }
+
+

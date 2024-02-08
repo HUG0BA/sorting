@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class NumberGenerator{
     
     public void GenerateRandomNumberFile(int numberAmount, String fileName, boolean isTest) throws IOException{
+
         Random random = new Random();
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
 
@@ -16,5 +17,6 @@ public class NumberGenerator{
 
         FileManager fileManager = new FileManager();
         fileManager.writeTXTFile(arrayList,fileName, isTest);
+        
     }
 }

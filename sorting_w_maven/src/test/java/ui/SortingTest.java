@@ -38,7 +38,8 @@ public class SortingTest {
         Integer[] testArray = GenerateTestArray(25);
         Integer[] orderedTestArray = GenerateOrderedTestArray(25);
 
-        sorting.RadixSort(testArray, 2);
+        int maxNumberOfDigits = sorting.FindMaxNumberOfDigits(testArray);
+        sorting.RadixSort(testArray, maxNumberOfDigits);
 
         assertArrayEquals(orderedTestArray, testArray);
     }
