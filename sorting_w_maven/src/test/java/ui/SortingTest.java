@@ -50,9 +50,9 @@ public class SortingTest {
         Integer[] testArray = GenerateTestArray(25);
         Integer[] orderedTestArray = GenerateOrderedTestArray(25);
 
-        int[] tempArr = new int[testArray.length];
+       
 
-        sorting.MergeSort(testArray, tempArr);
+        sorting.MergeSort(testArray);
 
         assertArrayEquals(orderedTestArray, testArray);
     }
@@ -72,5 +72,18 @@ public class SortingTest {
         }
         return orderedTestArray;
     }
+
+    @Test
+    public void TestSelectionSort() {
+        Sorting<Integer> sorting = new Sorting<Integer>();
+
+        Integer[] testArray = GenerateTestArray(25);
+        Integer[] orderedTestArray = GenerateOrderedTestArray(25);
+
+        sorting.selectionSort(testArray, testArray.length);
+
+        assertArrayEquals(orderedTestArray, testArray);
+    }
+
 
 }
