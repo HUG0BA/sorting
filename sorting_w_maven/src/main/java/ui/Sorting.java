@@ -109,16 +109,15 @@ public class Sorting<T extends Comparable<T>> {
         arr[j] = iValue;
     }
 
-    private void merge(Integer[] data, Integer[] temp, int low, int middle, int high) {
-        for (int i = low; i <= high; i++) {
-            temp[i] = data[i];
-        }
-        int i = low;
-        int j = middle + 1;
-        int k = low;
-
+    
+    private static void merge(Integer[] data, int temp[],int low, int middle, int high){
+        int ri = low; 
+        int ti = low; 
+        int di = middle; 
+        
+        
         while (i <= middle && j <= high) {
-            if (temp[i].compareTo(temp[j]) <= 0) {
+            if (temp[i] <= temp[j]) {
                 data[k] = temp[i];
                 i++;
             } else {
@@ -127,46 +126,38 @@ public class Sorting<T extends Comparable<T>> {
             }
             k++;
         }
+        
 
-        while (i <= middle) {
-            data[k] = temp[i];
-            k++;
-            i++;
+        while (ti < middle){
+            data[ri++] = temp[ti++];
         }
-    }
-
-    private void mergeSortRecursive(Integer[] data, Integer[] temp, int low, int high) {
-        if (low < high) {
-            int middle = low + (high - low) / 2;
-            mergeSortRecursive(data, temp, low, middle);
-            mergeSortRecursive(data, temp, middle + 1, high);
-            merge(data, temp, low, middle, high);
+        
         }
-    }
 
-    public void MergeSort(Integer[] arr) {
-        Integer[] tempArray = new Integer[arr.length];
-        mergeSortRecursive(arr, tempArray, 0, arr.length - 1);
+    private static void mergeSortRecursive(Integer[] data, int temp[], int low, int high){
+        int n = high-low+1;
+        int middle = low + n/2;
+        int i;
+        if (n < 2) return;
+        
+        for (i = low; i < middle; i++)
+        {
+        temp[i] = data[i];
+        }
+        
+        mergeSortRecursive(data,temp,low,middle-1);
+        
+        mergeSortRecursive(data,temp,middle,high);
+        
+        merge(data,temp,low,middle,high);
     }
 
     /**
-     * @param data
-     * @param n
+     * @param arr
      */
-    public void selectionSort(T[] data, int n)
-        {
-        int numUnsorted = n;
-        int index;
-        int max; 
-        while (numUnsorted > 0){
-            max = 0;
-            for (index = 1; index < numUnsorted; index++){
-                if (data[max].compareTo(data[index]) < 0) 
-                max = index;
-            }
-            Swap(data, max, numUnsorted-1);
-            numUnsorted--;
-        }
+    public void MergeSort(Integer[] arra, int[] i)
+    {
+    mergeSortRecursive(arra,i,0,arra.length-1);
     }
 
 }
