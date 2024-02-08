@@ -109,6 +109,7 @@ public class Sorting<T extends Comparable<T>> {
         arr[j] = iValue;
     }
 
+    
     private static void merge(Integer[] data, int temp[],int low, int middle, int high){
         int ri = low; 
         int ti = low; 

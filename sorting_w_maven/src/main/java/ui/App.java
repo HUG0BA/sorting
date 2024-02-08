@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -8,6 +9,7 @@ import java.io.IOException;
  */
 public class App 
 {
+
     public static void main( String[] args ) throws IOException
     {
         String[][] test = GenerateExpectedArray(10);
@@ -21,9 +23,9 @@ public class App
         UVGFileReader reader =  new UVGFileReader();
 
         String[][] testArray = reader.CSVToArray("/lectorTest.csv");
-        String[][] expectedArray = GenerateExpectedArray(10);}
+        System.out.println(testArray);
+        String[][] expectedArray = GenerateExpectedArray(10);
 
-        
 
         UVGFileWriter writer = new UVGFileWriter();
 
