@@ -8,31 +8,28 @@ import java.util.*;
  * Hello world!
  *
  */
-public class App 
-{
+public class App {
 
-    
-    public static void main( String[] args ) throws IOException
-    {
+    public static void main(String[] args) throws IOException {
         Scanner teclado = new Scanner(System.in);
         System.out.println("Sorting : Presiones ENTER para iniciar");
         teclado.nextLine();
 
-        boolean generateFiles = true;
-        if(generateFiles){
+        boolean generateFiles = false;
+        if (generateFiles) {
             GenerateAllFiles();
         }
 
         Sorting<Integer> sorting = new Sorting<Integer>();
-        for(int i = 10; i <= 3000; i++){
+        for (int i = 10; i <= 3000; i++) {
             FileManager fileManager = new FileManager();
 
-            ArrayList<Integer> arrayList = fileManager.readTXTFile("/n"+i+".txt");
+            ArrayList<Integer> arrayList = fileManager.readTXTFile("/n" + i + ".txt");
             Integer[] array = new Integer[i];
-            for(int j = 0; j < i; j++){
+            for (int j = 0; j < i; j++) {
                 array[j] = arrayList.get(j);
             }
-            
+
             sorting.GnomeSort(array);
             sorting.MergeSort(array);
             sorting.QuickSort(array);
@@ -43,18 +40,14 @@ public class App
         }
     }
 
-    public static void GenerateAllFiles() throws IOException{
+    public static void GenerateAllFiles() throws IOException {
         NumberGenerator generator = new NumberGenerator();
 
-        for(int i = 10; i <= 3000; i++){
-            generator.GenerateRandomNumberFile(i, "n" + i + ".txt",false);
-
+        for (int i = 10; i <= 3000; i++) {
+            generator.GenerateRandomNumberFile(i, "n" + i + ".txt", false);
 
         }
 
     }
-
-
-    
 
 }
