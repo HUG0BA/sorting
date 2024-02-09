@@ -1,6 +1,5 @@
 package ui;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.*;
@@ -15,8 +14,10 @@ public class App
     
     public static void main( String[] args ) throws IOException
     {
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("Sorting : Presiones ENTER para iniciar");
+        teclado.nextLine();
 
-        
         boolean generateFiles = true;
         if(generateFiles){
             GenerateAllFiles();
@@ -25,6 +26,7 @@ public class App
         Sorting<Integer> sorting = new Sorting<Integer>();
         for(int i = 10; i <= 3000; i++){
             FileManager fileManager = new FileManager();
+
             ArrayList<Integer> arrayList = fileManager.readTXTFile("/n"+i+".txt");
             Integer[] array = new Integer[i];
             for(int j = 0; j < i; j++){
